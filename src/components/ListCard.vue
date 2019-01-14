@@ -1,9 +1,11 @@
 <template lang="pug">
 q-card
-  q-card-title {{ entity.name }}
   q-card-media
-    div.image-trim.flex.flex-center
+    div.image-trim
       img(:src="image")
+
+  q-card-title {{ entity.name }}
+    div(slot="subtitle") {{ entity.breed }}
 
   q-card-main
     p.q-body-2 {{ entity.about | trimLength }}
@@ -47,13 +49,13 @@ export default {
 <style scoped>
 .image-trim {
   width: 100%;
-  height: 300px;
+  height: 30vh;
+  max-height: 400px;
   overflow: hidden;
+  text-align: center;
 }
 .image-trim > img {
-  max-height: 300px;
   width: auto;
-  max-width: 100%;
-  text-align: center;
+  height: 100%;
 }
 </style>
