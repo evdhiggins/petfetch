@@ -11,6 +11,7 @@ q-card
     p.q-body-2 {{ entity.about | trimLength }}
 
   q-card-actions
+    q-btn(@click.native="viewMore" flat) More
     q-btn(@click.native="openUrl" flat) View
 </template>
 
@@ -42,6 +43,9 @@ export default {
   methods: {
     openUrl() {
       window.open(this.entity.link);
+    },
+    viewMore() {
+      this.$root.$emit('moreInfo', this.entity);
     },
   },
 };

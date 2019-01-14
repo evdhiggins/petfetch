@@ -16,14 +16,17 @@ q-page
       :disabled="loading"
       ) Load more
     p.q-body-2(v-else) No more results available
+  entity-more-info
 </template>
 
 <script>
+import EntityMoreInfo from 'components/EntityMoreInfo.vue';
 import ListCard from 'components/ListCard.vue';
 
 export default {
   name: 'List',
   components: {
+    EntityMoreInfo,
     ListCard,
   },
   data() {
