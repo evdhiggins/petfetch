@@ -18,7 +18,7 @@ span
             q-item-main
               q-item-tile(label) {{ key | capitalizeFirstLetter }}
               q-item-tile(sublabel) {{ value }}
-          .col-xs-12
+          .col-xs-12(v-if="entity.about")
             q-item
               q-item-main
                 q-item-tile(label) About
@@ -53,8 +53,10 @@ export default {
         }
         return acc;
       }, {});
-      const { name, city, state } = this.entity.shelter;
-      columns.shelter = `${name} (${city}, ${state})`;
+      if (this.entity.shelter) {
+        const { name = '', city = '', state = '' } = this.entity.shelter;
+        columns.shelter = `${name} (${city}, ${state})`;
+      }
       return columns;
     },
   },
