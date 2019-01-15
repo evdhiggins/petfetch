@@ -46,13 +46,18 @@ export default {
       this.loading = true;
       const numberToFetch = 12;
 
-      const ref = this.$db
+      let query = this.$db
         .collection('Entities')
         .where('species', '==', 'Dog')
-        .orderBy('timestamp')
-        .startAfter(this.lastEntity)
+        .where('active', '>=', true)
+        .orderBy('active', 'asc')
+        .orderBy('timestamp', 'desc')
         .limit(numberToFetch);
-      const results = await ref.get();
+
+      if (this.lastEntity !== null) {
+        query = query.startAfter(this.lastEntity);
+      }
+      const results = await query.get();
       if (results.docs.length !== numberToFetch) {
         this.moreAvailable = false;
       }
