@@ -17,15 +17,18 @@ q-page
       ) Load more
     p.q-body-2(v-else) No more results available
   entity-more-info
+  entity-more-images
 </template>
 
 <script>
+import EntityMoreImages from 'components/EntityMoreImages.vue';
 import EntityMoreInfo from 'components/EntityMoreInfo.vue';
 import ListCard from 'components/ListCard.vue';
 
 export default {
   name: 'List',
   components: {
+    EntityMoreImages,
     EntityMoreInfo,
     ListCard,
   },

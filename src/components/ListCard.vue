@@ -2,7 +2,11 @@
 q-card
   q-card-media
     div.image-trim
-      img(:src="image")
+      img(
+        @click="viewMoreImages"
+        :class="moreImages ? 'hover' : ''"
+        :src="image"
+      )
 
   q-card-title {{ entity.name }}
     div(slot="subtitle") {{ entity.breed }}
@@ -11,7 +15,7 @@ q-card
     p.q-body-2 {{ entity.about | trimLength }}
 
   q-card-actions
-    q-btn(@click.native="viewMore" flat) More
+    q-btn(@click.native="viewMoreInfo" flat) More
     q-btn(@click.native="openUrl" flat) View
 </template>
 
@@ -33,6 +37,9 @@ export default {
         ? this.entity.imageURLs[0]
         : this.placeholderImage;
     },
+    moreImages() {
+      return this.entity.imageURLs.length > 0;
+    },
   },
   filters: {
     trimLength(str) {
@@ -44,8 +51,13 @@ export default {
     openUrl() {
       window.open(this.entity.link);
     },
-    viewMore() {
+    viewMoreInfo() {
       this.$root.$emit('moreInfo', this.entity);
+    },
+    viewMoreImages() {
+      if (this.moreImages) {
+        this.$root.$emit('moreImages', this.entity);
+      }
     },
   },
 };
@@ -61,5 +73,9 @@ export default {
 .image-trim > img {
   width: auto;
   height: 100%;
+}
+
+.hover:hover {
+  cursor: pointer;
 }
 </style>

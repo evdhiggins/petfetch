@@ -55,6 +55,8 @@ module.exports = ctx => ({
       'QCardMedia',
       'QCardSeparator',
       'QCardTitle',
+      'QCarousel',
+      'QCarouselSlide',
       'QItem',
       'QItemMain',
       'QItemTile',
